@@ -34,13 +34,28 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     teamContainer: {
-      justifyContent: 'center',
-      borderWidth: 0,
       borderRadius: 12,
       width: PhoneWidth * 0.9,
       height: PhoneHeight * 0.1,
       marginTop: PhoneHeight * 0.1,
-      backgroundColor: '#fbca6f'
+      backgroundColor: '#fbca6f',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    saveButtonContainer: {
+      borderWidth: 0,
+      width: PhoneWidth,
+      height: PhoneHeight * 0.1,
+      marginRight: PhoneWidth * 0.7,
+      alignItems: 'flex-end',
+      justifyContent: 'center'
+    },
+    modalContainer: {
+      width: PhoneWidth,
+      height: PhoneHeight * 0.4,
+      borderWidth: 1,
+      marginTop: PhoneHeight * 0.13,
+      backgroundColor: 'pink'
     },
     textContainer: {
       borderWidth: 0,
@@ -76,5 +91,12 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#fbca6f'
-    }
+    },
+    modalContainer: {
+      width: PhoneWidth,
+      height: PhoneHeight * 0.4,
+      borderWidth: 0,
+      marginTop: PhoneHeight * 0.13,
+      backgroundColor: '#fff'
+    },
   });

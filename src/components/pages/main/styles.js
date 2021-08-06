@@ -8,72 +8,76 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     headerContainer: {
-      borderWidth: 0,
+      alignItems: 'center',
       width: PhoneWidth,
       height: PhoneHeight * 0.1,
       backgroundColor: '#fff',
-      flexDirection: 'row'
-    },
-    arrowButtonContainer: {
-      borderWidth: 0, 
-      justifyContent: 'center',
-      width: PhoneWidth * 0.25, 
-      height: PhoneHeight * 0.1,
     },
     pickerContainer: {
-      borderWidth: 0,
       width: PhoneWidth * 0.5,
       height: PhoneHeight * 0.1,
       alignItems: 'center',
       justifyContent: 'center',
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
-    picker: {
-      borderWidth: 0,
-      width: PhoneWidth * 0.5, 
-      height: PhoneHeight * 0.05,
-      marginLeft: PhoneWidth * 0.25
+    pickerText: {
+      fontSize: responsiveSize(18)
+    },
+    arrowImg: {
+      width: responsiveSize(9), 
+      height: responsiveSize(9),
+      marginTop: responsiveSize(2), 
+      marginLeft: responsiveSize(2)
     },
     modalContainer: {
       width: PhoneWidth,
       height: PhoneHeight * 0.4,
-      borderWidth: 0,
       marginTop: PhoneHeight * 0.13,
       backgroundColor: '#fff'
     },
     saveButtonContainer: {
-      borderWidth: 0,
       width: PhoneWidth,
       height: PhoneHeight * 0.1,
       marginRight: PhoneWidth * 0.7,
       alignItems: 'flex-end',
       justifyContent: 'center'
     },
+    saveButton: { 
+      width: PhoneWidth * 0.25, 
+      height: PhoneHeight * 0.1, 
+      alignItems: 'center'
+    },
     submissionContainer: {
-      marginTop: PhoneHeight * 0.1,
-      borderWidth: 0,
-      borderRadius: 24,
+      borderRadius: 20,
+      marginVertical: responsiveSize(5),
       backgroundColor: '#fbca6f',
       width: PhoneWidth * 0.9,
-      height: PhoneHeight * 0.4
+      height: PhoneHeight * 0.4,
+      alignSelf: 'center'
     },
-    modal: {
-      borderWidth: 0,
-      backgroundColor: 'red',
-      width: PhoneWidth, 
-      height: PhoneHeight * 0.3, 
-      marginTop: PhoneHeight * 0.2
+    plusButtonContainer: {
+      width: PhoneWidth * 0.2,
+      height: PhoneHeight * 0.1,
+      justifyContent: 'center',
+      marginTop: PhoneHeight * 0.85,
+      position: 'absolute',
+      alignItems: 'flex-start',
+      alignSelf: 'flex-end'
     },
     plusIconButton: {
-      borderWidth: 1,
-      marginLeft: PhoneWidth * 0.7,
-      marginTop: PhoneHeight * 0.25,
+      borderWidth: 2,
+      position: "absolute",
+      marginBottom: PhoneHeight * 0.1,
       borderRadius: 200,
-      borderColor: '#fbca6f',
+      borderColor: '#000',
       alignItems: 'center',
       justifyContent: 'center',
       width: responsiveSize(50),
       height: responsiveSize(50),
+    },
+    plusIcon: {
+      width: responsiveSize(20), 
+      height: responsiveSize(20)
     }
   });
   

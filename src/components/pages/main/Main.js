@@ -5,20 +5,28 @@ import {
   View, 
   Image, 
   TouchableOpacity, 
-  Modal
+  Modal,
+  ScrollView
  } from 'react-native';
 import { responsiveSize, PhoneWidth, PhoneHeight } from '../../config/env'
 import { Picker } from '@react-native-picker/picker';
 import styles from '../../pages/main/styles';
+import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
+import { connect } from 'react-redux';
 
 class Main extends Component {
+  componentDidMount(){
+    this.props.fetchTeamCategories();
+    this.props.fetchSubmissions();
+  }
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
-      selectedTeam: "Select your team", 
+      selectedTeam: 'Select your team', 
     }   
-}
+  }
+ 
   displayModal = () => {
     this.setState({modalVisible: true
     })
@@ -29,24 +37,19 @@ class Main extends Component {
   close = () => {
     this.setState({modalVisible: false})
   }
-    render(){
+    render(){ 
         return (
             <SafeAreaView style = {styles.container}>
               <View style = {styles.headerContainer}>
-                  <TouchableOpacity style = {styles.arrowButtonContainer}>
-                    <Image
-                      style = {{width: responsiveSize(15), height: responsiveSize(15), marginLeft: responsiveSize(10)}}
-                      source = {require('../../../images/arrow.png')}/>
-                  </TouchableOpacity>
                   <TouchableOpacity 
                     onPress = {this.displayModal}
                     style = {styles.pickerContainer}>
-                    <Text style = {{fontSize: responsiveSize(18)}}>{this.state.selectedTeam}</Text>
+                    <Text style = {styles.pickerText}>{this.state.selectedTeam}</Text>
                     <Image 
-                      style = {{width: responsiveSize(9), height: responsiveSize(9), marginTop: responsiveSize(2), marginLeft: responsiveSize(2)}}
+                      style = {styles.arrowImg}
                       source = {require('../../../images/downArrow.png')}></Image>
                   </TouchableOpacity>
-              </View>
+              </View> 
               <Modal
                   animationType = "slide"
                   transparent = {true}
@@ -55,38 +58,59 @@ class Main extends Component {
                   this.setModalVisible(!modalVisible)}}>
                 <View style = {styles.modalContainer}>
                   <Picker 
-                      selectedValue = {this.state.selectedTeam}
-                      onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
-                    <Picker.Item label = "" value = "Select your team"></Picker.Item>
-                    <Picker.Item label = "Support" value = "Support" onPress = {this.close} ></Picker.Item>
-                    <Picker.Item label = "Fullstack" value = "Fullstack"></Picker.Item>
-                    <Picker.Item label = "DevOps" value = "Devops"></Picker.Item>
+                        selectedValue = {this.state.selectedTeam}
+                        onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
+                          {this.props.teamCategoriesValue.map((item) => {
+                            return(
+                              <Picker.Item label = "" value = ""></Picker.Item> ,
+                              <Picker.Item label = {item} value = {item}></Picker.Item> 
+                            )
+                          })}
                   </Picker>
                   <View style = {styles.saveButtonContainer}>
                     <TouchableOpacity 
                       onPress =  {this.close}
-                      style = {{borderWidth: 0, width: PhoneWidth * 0.25, height: PhoneHeight * 0.1, alignItems: 'center'}}>
+                      style = {styles.saveButton}>
                       <Text style = {{fontSize: responsiveSize(20)}}>Save</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
-              </Modal>
-              <View style = {styles.submissionContainer}>
-                <Text style = {{fontSize: responsiveSize(20), margin: responsiveSize(10)}}>Support Team</Text>
-                <View style = {{borderBottomWidth: 1, width: PhoneWidth * 0.5}}></View>
-                <Text style = {{fontSize: responsiveSize(12), margin: responsiveSize(10)}}>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</Text>
+              </Modal> 
+              <ScrollView> 
+                {this.props.submissions.map((item) => {
+                  return(
+                      <View style = {styles.submissionContainer}>
+                        <Text style = {{fontSize: responsiveSize(20), margin: responsiveSize(10)}}>{item.answers[5].answer}</Text>
+                        <View style = {{borderBottomWidth: 1, width: PhoneWidth * 0.5}}></View>
+                        <Text style = {{fontSize: responsiveSize(12), margin: responsiveSize(10)}}>{item.answers[4].answer}</Text>
+                      </View>                    
+                  )
+                })}
+              </ScrollView>
+              <View style = {styles.plusButtonContainer}>
+                <TouchableOpacity 
+                  onPress={() => this.props.navigation.navigate('Create Submission')}
+                  style = {styles.plusIconButton}>
+                  <Image
+                        style = {styles.plusIcon}
+                        source = {require('../../../images/plus.png')}/>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity 
-                onPress={() => this.props.navigation.navigate('Create Submission')}
-                style = {styles.plusIconButton}>
-                <Image
-                      style = {{width: responsiveSize(20), height: responsiveSize(20)}}
-                      source = {require('../../../images/plus.png')}/>
-              </TouchableOpacity>
             </SafeAreaView>
         );
     }
 } 
-export default Main;
+const mapStateToProps = (state) => {
+  const { teamCategoriesValue, submissions } = state.reducer;
+  return {
+    teamCategoriesValue,
+    submissions
+  }
+}
+export default connect(
+  mapStateToProps,
+  {
+    fetchTeamCategories,
+    fetchSubmissions
+  }
+)(Main)
