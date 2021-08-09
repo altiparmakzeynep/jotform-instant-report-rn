@@ -8,52 +8,58 @@ export default StyleSheet.create({
       alignItems: 'center',
     },
     headerContainer: {
-      alignItems: 'center',
-      width: PhoneWidth,
-      height: PhoneHeight * 0.1,
-      backgroundColor: '#fff',
-    },
-    pickerContainer: {
-      width: PhoneWidth * 0.5,
-      height: PhoneHeight * 0.1,
-      alignItems: 'center',
+      borderBottomWidth: 1,
+      borderColor: '#eeeeee',
       justifyContent: 'center',
-      flexDirection: 'row',
-    },
-    pickerText: {
-      fontSize: responsiveSize(18)
-    },
-    arrowImg: {
-      width: responsiveSize(9), 
-      height: responsiveSize(9),
-      marginTop: responsiveSize(2), 
-      marginLeft: responsiveSize(2)
-    },
-    modalContainer: {
-      width: PhoneWidth,
-      height: PhoneHeight * 0.4,
-      marginTop: PhoneHeight * 0.13,
-      backgroundColor: '#fff'
-    },
-    saveButtonContainer: {
-      width: PhoneWidth,
+      marginTop: PhoneHeight * 0.05,
+      width: PhoneWidth * 0.9, 
       height: PhoneHeight * 0.1,
-      marginRight: PhoneWidth * 0.7,
-      alignItems: 'flex-end',
-      justifyContent: 'center'
+      backgroundColor: '#fff', 
     },
-    saveButton: { 
-      width: PhoneWidth * 0.25, 
-      height: PhoneHeight * 0.1, 
-      alignItems: 'center'
+    bottomTeamsButton: {
+      borderRadius: 3,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#7dcfb6',
+      marginHorizontal: responsiveSize(3),
+      width: PhoneWidth * 0.4,
+      height: PhoneHeight * 0.075
+    },
+    teamsNameText: {
+      color: '#fff',
+      fontWeight: '500',
+      fontSize: responsiveSize(17)
     },
     submissionContainer: {
-      borderRadius: 20,
-      marginVertical: responsiveSize(5),
-      backgroundColor: '#fbca6f',
+      borderRadius: 5,
+      marginVertical: responsiveSize(10),
+      backgroundColor: '#f79256',
       width: PhoneWidth * 0.9,
-      height: PhoneHeight * 0.4,
+      height: PhoneHeight * 0.3,
       alignSelf: 'center'
+    },
+    teamsHeaderText: {
+      fontSize: responsiveSize(22),
+      color: '#fff',
+      fontWeight: '600',
+      margin: responsiveSize(15)
+    },
+    submissionsText: {
+      fontSize: responsiveSize(17),
+      color: '#000',
+      fontWeight: '500',
+      marginLeft: responsiveSize(15)
+    },
+    titleContainer: {
+      width: PhoneWidth,
+      height: PhoneHeight * 0.1,
+      justifyContent: 'center'
+    },
+    titleText: {
+      fontSize: responsiveSize(22),
+      marginLeft: PhoneWidth * 0.05,
+      fontWeight: '400',
+      color: '#434343'
     },
     plusButtonContainer: {
       width: PhoneWidth * 0.2,
@@ -62,14 +68,15 @@ export default StyleSheet.create({
       marginTop: PhoneHeight * 0.85,
       position: 'absolute',
       alignItems: 'flex-start',
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',      
     },
     plusIconButton: {
-      borderWidth: 2,
+      backgroundColor: '#4d4f4e',
+      borderWidth: 3,
       position: "absolute",
       marginBottom: PhoneHeight * 0.1,
       borderRadius: 200,
-      borderColor: '#000',
+      borderColor: '#3f4140',
       alignItems: 'center',
       justifyContent: 'center',
       width: responsiveSize(50),

@@ -18,7 +18,7 @@ const persistConfig = {
     whitelist: [],
     blacklist: ['authButtonSpinner', 'authSpinnerStatus'] 
 };
-const teamCategoriesReducer = (state = INITIAL_STATE, action) => {
+const mainReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case FETCH_TEAM_CATEGORIES:
             state.optionsArray = action.payload.data.content.options
@@ -40,4 +40,4 @@ const teamCategoriesReducer = (state = INITIAL_STATE, action) => {
                 return state;
     }
 }
-export default persistReducer(persistConfig, reducer);
+export default persistReducer(persistConfig, mainReducer);

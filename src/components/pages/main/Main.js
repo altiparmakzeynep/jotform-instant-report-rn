@@ -6,7 +6,8 @@ import {
   Image, 
   TouchableOpacity, 
   Modal,
-  ScrollView
+  ScrollView,
+  FlatList
  } from 'react-native';
 import { responsiveSize, PhoneWidth, PhoneHeight } from '../../config/env'
 import { Picker } from '@react-native-picker/picker';
@@ -22,67 +23,37 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false,
-      selectedTeam: 'Select your team', 
     }   
   }
- 
-  displayModal = () => {
-    this.setState({modalVisible: true
-    })
-  }
-  setSelectedTeam = (itemValue) => {
-    this.setState({selectedTeam : itemValue})
-  }
-  close = () => {
-    this.setState({modalVisible: false})
+  teamCategoriesRenderItem = ({item}) => {
+    return(
+      <TouchableOpacity style = {styles.bottomTeamsButton}>
+       <Text style = {styles.teamsNameText}>{item}</Text>
+     </TouchableOpacity> 
+    )
   }
     render(){ 
+      console.log("umut elini cek", this.props.teamCategoriesValue);
         return (
             <SafeAreaView style = {styles.container}>
               <View style = {styles.headerContainer}>
-                  <TouchableOpacity 
-                    onPress = {this.displayModal}
-                    style = {styles.pickerContainer}>
-                    <Text style = {styles.pickerText}>{this.state.selectedTeam}</Text>
-                    <Image 
-                      style = {styles.arrowImg}
-                      source = {require('../../../images/downArrow.png')}></Image>
-                  </TouchableOpacity>
-              </View> 
-              <Modal
-                  animationType = "slide"
-                  transparent = {true}
-                  visible = {this.state.modalVisible}
-                  onRequestClose = {() => {
-                  this.setModalVisible(!modalVisible)}}>
-                <View style = {styles.modalContainer}>
-                  <Picker 
-                        selectedValue = {this.state.selectedTeam}
-                        onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
-                          {this.props.teamCategoriesValue.map((item) => {
-                            return(
-                              <Picker.Item label = "" value = ""></Picker.Item> ,
-                              <Picker.Item label = {item} value = {item}></Picker.Item> 
-                            )
-                          })}
-                  </Picker>
-                  <View style = {styles.saveButtonContainer}>
-                    <TouchableOpacity 
-                      onPress =  {this.close}
-                      style = {styles.saveButton}>
-                      <Text style = {{fontSize: responsiveSize(20)}}>Save</Text>
-                    </TouchableOpacity>
-                  </View>
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator = {false}
+                    data = {this.props.teamCategoriesValue}
+                    renderItem = {this.teamCategoriesRenderItem}
+                    keyExtractor={item => item.id}/>
+
+              </View>  
+              <ScrollView showsVerticalScrollIndicator = {false}> 
+                <View style = {styles.titleContainer}>
+                    <Text style = {styles.titleText}>What is new?</Text>
                 </View>
-              </Modal> 
-              <ScrollView> 
                 {this.props.submissions.map((item) => {
                   return(
                       <View style = {styles.submissionContainer}>
-                        <Text style = {{fontSize: responsiveSize(20), margin: responsiveSize(10)}}>{item.answers[5].answer}</Text>
-                        <View style = {{borderBottomWidth: 1, width: PhoneWidth * 0.5}}></View>
-                        <Text style = {{fontSize: responsiveSize(12), margin: responsiveSize(10)}}>{item.answers[4].answer}</Text>
+                        <Text style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
+                        <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text>
                       </View>                    
                   )
                 })}
@@ -101,7 +72,7 @@ class Main extends Component {
     }
 } 
 const mapStateToProps = (state) => {
-  const { teamCategoriesValue, submissions } = state.reducer;
+  const { teamCategoriesValue, submissions } = state.mainReducer;
   return {
     teamCategoriesValue,
     submissions

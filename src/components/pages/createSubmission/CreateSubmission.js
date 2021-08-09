@@ -30,7 +30,7 @@ class CreateSubmission extends Component{
     super(props);
     this.state = {
       modalVisible: false,
-      selectedTeam: "Select your team", 
+      selectedTeam: "Select", 
       longTextValue: ""
     }   
   }
@@ -58,52 +58,53 @@ class CreateSubmission extends Component{
                         onPress={() => this.props.navigation.navigate('Submissions')}
                         style = {styles.arrowButtonContainer}>
                         <Image
-                           style = {{width: responsiveSize(15), height: responsiveSize(15), marginLeft: responsiveSize(10)}}
+                           style = {styles.arrowImg}
                            source = {require('../../../images/arrow.png')}/>
                     </TouchableOpacity>
-                    <View style = {styles.headerTextContainer}>
-                      <Text style = {{fontSize: responsiveSize(14), fontWeight: 'bold'}}>Create Submission</Text>
+                    <View style =  {styles.bottomHeader}>
+                      <Text style = {styles.bottomHeaderText}>Team</Text>
+                      <TouchableOpacity 
+                        onPress = {this.displayModal}
+                        style = {styles.bottomDropdown}>
+                     <Text style = {styles.dropdownText}>{this.state.selectedTeam}</Text>
+                     <Image 
+                        style = {styles.downArrowImg}
+                        source = {require('../../../images/downArrow.png')}></Image>
+                    </TouchableOpacity>
                     </View>
                 </View>
-
                 <HideKeyboard>
-                  <View style = {styles.inputsContainer}>
-                    <TouchableOpacity 
-                        onPress = {this.displayModal}
-                        style = {styles.teamContainer}>
-                     <Text>{this.state.selectedTeam}</Text>
-                    </TouchableOpacity>
-
-
+                  <View style = {styles.inputContainer}>
                     <Modal animationType = "slide"
                            transparent = {true}
                            visible = {this.state.modalVisible}
                            onRequestClose = {() => {
                            this.setModalVisible(!modalVisible)}}>
                       <View style = {styles.modalContainer}>
-                      <Picker 
-                      selectedValue = {this.state.selectedTeam}
-                      onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
-                          {this.props.teamCategoriesValue.map((item) => {
-                            return(
-                              <Picker.Item label = {item} value = {item}></Picker.Item> 
-                            )
-                          })}
-                 </Picker>
-                 <View style = {styles.saveButtonContainer}>
-                  <TouchableOpacity 
-                    onPress =  {this.close}
-                    style = {{borderWidth: 0, width: PhoneWidth * 0.25, height: PhoneHeight * 0.1, alignItems: 'center'}}>
-                    <Text style = {{fontSize: responsiveSize(20)}}>Save</Text>
-                  </TouchableOpacity>
-                </View>
-                 </View>
+                        <Picker 
+                        selectedValue = {this.state.selectedTeam}
+                        onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
+                            {this.props.teamCategoriesValue.map((item) => {
+                              return(
+                                <Picker.Item label = {item} value = {item}></Picker.Item> 
+                              )
+                            })}
+                        </Picker>
+                        <View style = {styles.saveButtonContainer}>
+                          <TouchableOpacity 
+                            onPress =  {this.close}
+                            style = {{borderWidth: 0, width: PhoneWidth * 0.25, height: PhoneHeight * 0.1, alignItems: 'center'}}>
+                            <Text style = {{fontSize: responsiveSize(20)}}>Done</Text>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
                     </Modal>
-
-
+                    <View style = {styles.titleContainer}>
+                      <Text style = {styles.titleText}>What is new?</Text>
+                    </View>
                     <View style = {styles.textContainer}>
-                      <Text style = {{fontSize: responsiveSize(15), marginLeft: responsiveSize(5)}}>Text:</Text>
                         <TextInput 
+                            placeholder = 'Type here...'
                             maxLength = {140}
                             multiline = {true} 
                             style = {styles.textInputContainer}
@@ -111,9 +112,9 @@ class CreateSubmission extends Component{
                     </View>
                     <View style = {styles.submitButtonContainer}>
                       <TouchableOpacity 
-                        onPress = {this.onSubmit }
+                        onPress = { this.onSubmit }
                         style = {styles.submitButton}>
-                        <Text style = {{fontSize: responsiveSize(16)}}>Submit</Text>
+                        <Text style = {styles.submitText}>Submit</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -123,7 +124,7 @@ class CreateSubmission extends Component{
     }
 }
 const mapStateToProps = (state) => {
-  const { teamCategoriesValue, longTextValue } = state.reducer;
+  const { teamCategoriesValue, longTextValue } = state.mainReducer;
   return {
     teamCategoriesValue,
     longTextValue
