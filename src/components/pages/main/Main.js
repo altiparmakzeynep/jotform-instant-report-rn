@@ -33,7 +33,6 @@ class Main extends Component {
     )
   }
     render(){ 
-      console.log("umut elini cek", this.props.teamCategoriesValue);
         return (
             <SafeAreaView style = {styles.container}>
               <View style = {styles.headerContainer}>
