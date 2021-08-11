@@ -5,12 +5,9 @@ import {
   View, 
   Image, 
   TouchableOpacity, 
-  Modal,
   ScrollView,
   FlatList
  } from 'react-native';
-import { responsiveSize, PhoneWidth, PhoneHeight } from '../../config/env'
-import { Picker } from '@react-native-picker/picker';
 import styles from '../../pages/main/styles';
 import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
 import { connect } from 'react-redux';
@@ -25,15 +22,21 @@ class Main extends Component {
     this.state = {
     }   
   }
+  searchTeams = (search) => {
+    console.log("clicked", search);
+    this.props.submissions.map((item) => 
+      item.answers[5].answer === search.item ? console.log("selected team's submission/s", item) : 0)    
+  } 
   teamCategoriesRenderItem = ({item}) => {
     return(
-      <TouchableOpacity style = {styles.bottomTeamsButton}>
+      <TouchableOpacity 
+        onPress = {() => this.searchTeams({item})}
+        style = {styles.bottomTeamsButton}>
        <Text style = {styles.teamsNameText}>{item}</Text>
      </TouchableOpacity> 
     )
   }
-    render(){ 
-      console.log("umut elini cek", this.props.teamCategoriesValue);
+    render(){  
         return (
             <SafeAreaView style = {styles.container}>
               <View style = {styles.headerContainer}>
@@ -51,11 +54,11 @@ class Main extends Component {
                 </View>
                 {this.props.submissions.map((item) => {
                   return(
-                      <View style = {styles.submissionContainer}>
-                        <Text style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
-                        <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text>
-                      </View>                    
-                  )
+                    <View style = {styles.submissionContainer}>
+                      <Text style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
+                      <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text>
+                    </View>                    
+                )
                 })}
               </ScrollView>
               <View style = {styles.plusButtonContainer}>
@@ -70,12 +73,13 @@ class Main extends Component {
             </SafeAreaView>
         );
     }
-} 
+}  
 const mapStateToProps = (state) => {
   const { teamCategoriesValue, submissions } = state.mainReducer;
   return {
     teamCategoriesValue,
-    submissions
+    submissions,
+    
   }
 }
 export default connect(

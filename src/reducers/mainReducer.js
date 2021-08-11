@@ -10,8 +10,9 @@ const INITIAL_STATE = {
     optionsArray: [],
     teamCategoriesValue: [],
     longTextValue: "",
-    submissions: []
-}
+    submissions: [],
+    submissionCount: 0
+}  
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
@@ -22,19 +23,18 @@ const mainReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case FETCH_TEAM_CATEGORIES:
             state.optionsArray = action.payload.data.content.options
-            state.teamCategoriesValue = state.optionsArray.split("|");
+            state.teamCategoriesValue = state.optionsArray.split("|")
             return{
                 ...state,
             }
         case SEND_SUBMISSION:
             return{
-                ...state, 
+                ...state,
             }
         case FETCH_SUBMISSIONS:
-            action.payload.data.content.map((item) => item.status !== 'DELETED' ? 
-             state.submissions.push(item) : 0); 
             return{
                 ...state,
+                submissions: action.payload.data.content
             }
             default:
                 return state;

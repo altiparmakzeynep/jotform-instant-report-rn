@@ -24,30 +24,7 @@ export const fetchTeamCategories = (item) => {
         })
     }
 }
-export const sendSubmission = ( selectedTeam, longTextValue) => {
-    var data = new URLSearchParams();
-    data.append('submission[4]', longTextValue);
-    data.append('submission[5]', selectedTeam);
-    return dispatch => {
-        axios({
-            method: "POST",
-            url: `${API_BASE}/form/${FORM_ID}/submissions?apiKey=${API_KEY}`,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            data: data
-        }).then((result) => {
-            this.fetchSubmissions();
-            dispatch({
-                type: SEND_SUBMISSION,
-                payload: result.data
-            })
-        }).catch((err) => {
-            console.log(err.response)
-        })
-    }
-}
-export const fetchSubmissions = (item) => {
+export const fetchSubmissions = () => {
     return dispatch => {
         axios({
             url: `${API_BASE}/form/${FORM_ID}/submissions?apiKey=${API_KEY}`,
@@ -63,6 +40,28 @@ export const fetchSubmissions = (item) => {
             })
         }).catch((err) => {
             console.log(err.response)
+        })
+    }
+}
+export const sendSubmission = ( selectedTeam, longTextValue) => {
+    var data = new URLSearchParams();
+    data.append('submission[4]', longTextValue);
+    data.append('submission[5]', selectedTeam);
+    return dispatch => {
+        axios({
+            method: "POST",
+            url: `${API_BASE}/form/${FORM_ID}/submissions?apiKey=${API_KEY}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            data: data
+        }).then((result) => {
+            dispatch({
+                type: SEND_SUBMISSION,
+                payload: result.data
+            })
+        }).catch((err) => {
+            console.log("ERR",err.response)
         })
     }
 }

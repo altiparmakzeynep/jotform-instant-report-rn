@@ -13,7 +13,7 @@ import {
 import { responsiveSize, PhoneWidth, PhoneHeight } from '../../config/env'
 import styles from "../createSubmission/styles";
 import { Picker } from '@react-native-picker/picker';
-import { fetchTeamCategories, sendSubmission } from '../../../actions/action';
+import { fetchTeamCategories, sendSubmission, fetchSubmissions} from '../../../actions/action';
 import { connect } from 'react-redux';
 
 const HideKeyboard = ({ children }) => (
@@ -46,9 +46,10 @@ class CreateSubmission extends Component{
   }
   onLongTextChanged = (value) => this.setState({longTextValue: value})
 
-  onSubmit = () => {
-    this.props.navigation.navigate('Submissions');
-    this.props.sendSubmission(this.state.selectedTeam, this.state.longTextValue);
+   onSubmit = async () => {
+    await this.props.sendSubmission(this.state.selectedTeam, this.state.longTextValue);
+    await this.props.navigation.navigate('Submissions');
+    await this.props.fetchSubmissions();
   }
     render(){
         return(
@@ -135,6 +136,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTeamCategories,
-    sendSubmission
+    sendSubmission,
+    fetchSubmissions
   }
 )(CreateSubmission)
