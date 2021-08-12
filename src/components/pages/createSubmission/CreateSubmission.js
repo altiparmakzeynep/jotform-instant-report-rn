@@ -106,7 +106,6 @@ class CreateSubmission extends Component{
                     <View style = {styles.textContainer}>
                         <TextInput 
                             placeholder = 'Type here...'
-                            maxLength = {140}
                             multiline = {true} 
                             style = {styles.textInputContainer}
                             onChangeText={this.onLongTextChanged}/>

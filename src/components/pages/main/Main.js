@@ -5,12 +5,13 @@ import {
   View, 
   Image, 
   TouchableOpacity, 
-  ScrollView,
   FlatList
  } from 'react-native';
 import styles from '../../pages/main/styles';
 import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
 import { connect } from 'react-redux';
+import SubmissionCard from '../../cards/SubmissionCard';
+import { PhoneHeight } from '../../config/env';
 
 class Main extends Component {
   componentDidMount(){
@@ -20,12 +21,24 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedTeam: [],
+      allButton: false
     }   
   }
   searchTeams = (search) => {
     console.log("clicked", search);
-    this.props.submissions.map((item) => 
-      item.answers[5].answer === search.item ? console.log("selected team's submission/s", item) : 0)    
+    this.setState({ allButton:false })
+    return(
+      this.props.submissions.map((item) => {
+        item.answers[5].answer === search.item ? 
+        this.setState(prevState => ({
+          selectedTeam: [...prevState.selectedTeam, item]
+        }))
+            : this.state.selectedTeam.splice(0,100)
+      }
+     )  
+    )
+      
   } 
   teamCategoriesRenderItem = ({item}) => {
     return(
@@ -36,10 +49,29 @@ class Main extends Component {
      </TouchableOpacity> 
     )
   }
+  renderContent = ({item}) => {
+    const teamTitle = item.answers[5].answer;
+    return(
+      <View style = {styles.submissionContainer}>
+      <Text onPress =  {() => this.searchTeams({teamTitle})} style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
+      {item.answers[4].answer.length >= 140 ?  
+          <Text style = {styles.submissionsText}>{item.answers[4].answer.substring(0,140)}...
+              <Text style = {styles.contuniueText}>read more</Text>
+          </Text> 
+          : 
+          <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text> }
+  </View> 
+    )
+  }
     render(){  
         return (
             <SafeAreaView style = {styles.container}>
               <View style = {styles.headerContainer}>
+                <TouchableOpacity 
+                  onPress = {() => this.setState({allButton:true})}
+                  style = {styles.allButton}>
+                  <Text style = {styles.teamsNameText}>All</Text>
+                </TouchableOpacity>
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator = {false}
@@ -48,19 +80,19 @@ class Main extends Component {
                     keyExtractor={item => item.id}/>
 
               </View>  
-              <ScrollView showsVerticalScrollIndicator = {false}> 
+              <View > 
                 <View style = {styles.titleContainer}>
                     <Text style = {styles.titleText}>What is new?</Text>
                 </View>
-                {this.props.submissions.map((item) => {
-                  return(
-                    <View style = {styles.submissionContainer}>
-                      <Text style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
-                      <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text>
-                    </View>                    
-                )
-                })}
-              </ScrollView>
+                {this.state.selectedTeam == 0 || this.state.allButton === true ? <SubmissionCard/> 
+                : 
+                <View style = {{height: PhoneHeight * 0.7}}>
+                  <FlatList data = {this.state.selectedTeam}
+                          renderItem = {this.renderContent}/>
+                </View>
+                }
+           
+              </View>
               <View style = {styles.plusButtonContainer}>
                 <TouchableOpacity 
                   onPress={() => this.props.navigation.navigate('Create Submission')}
@@ -75,10 +107,11 @@ class Main extends Component {
     }
 }  
 const mapStateToProps = (state) => {
-  const { teamCategoriesValue, submissions } = state.mainReducer;
+  const { teamCategoriesValue, submissions, optionsArray } = state.mainReducer;
   return {
     teamCategoriesValue,
     submissions,
+    optionsArray
     
   }
 }

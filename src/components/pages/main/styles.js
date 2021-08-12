@@ -15,13 +15,23 @@ export default StyleSheet.create({
       width: PhoneWidth * 0.9, 
       height: PhoneHeight * 0.1,
       backgroundColor: '#fff', 
+      flexDirection: 'row'
+    },
+    allButton: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: PhoneWidth * 0.2,
+      height: PhoneHeight * 0.075,
+      borderBottomRightRadius: 3,
+      borderTopRightRadius: 3,
+      backgroundColor: '#00b2ca',
     },
     bottomTeamsButton: {
       borderRadius: 3,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#7dcfb6',
-      marginHorizontal: responsiveSize(3),
+      marginLeft: 4,
       width: PhoneWidth * 0.4,
       height: PhoneHeight * 0.075
     },
@@ -36,7 +46,7 @@ export default StyleSheet.create({
       backgroundColor: '#f79256',
       width: PhoneWidth * 0.9,
       height: PhoneHeight * 0.3,
-      alignSelf: 'center'
+      alignSelf: 'center',
     },
     teamsHeaderText: {
       fontSize: responsiveSize(22),
@@ -45,10 +55,19 @@ export default StyleSheet.create({
       margin: responsiveSize(15)
     },
     submissionsText: {
-      fontSize: responsiveSize(17),
+      fontSize: responsiveSize(15),
       color: '#000',
       fontWeight: '500',
-      marginLeft: responsiveSize(15)
+      marginLeft: responsiveSize(15),
+      marginRight: responsiveSize(15),
+    },
+    contuniueText: {
+      textDecorationLine: 'underline',  
+      fontSize: responsiveSize(15),
+      color: '#fff',
+      fontWeight: '500',
+      // marginLeft: responsiveSize(15),
+      // marginRight: responsiveSize(15),
     },
     titleContainer: {
       width: PhoneWidth,
