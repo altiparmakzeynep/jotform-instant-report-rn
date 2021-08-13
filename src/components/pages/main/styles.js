@@ -66,8 +66,6 @@ export default StyleSheet.create({
       fontSize: responsiveSize(15),
       color: '#fff',
       fontWeight: '500',
-      // marginLeft: responsiveSize(15),
-      // marginRight: responsiveSize(15),
     },
     titleContainer: {
       width: PhoneWidth,
@@ -80,16 +78,29 @@ export default StyleSheet.create({
       fontWeight: '400',
       color: '#434343'
     },
+    noSubmissionText: {
+      alignSelf: 'center',
+      fontSize: responsiveSize(20)
+    },
     plusButtonContainer: {
       width: PhoneWidth * 0.2,
       height: PhoneHeight * 0.1,
       justifyContent: 'center',
       marginTop: PhoneHeight * 0.85,
       position: 'absolute',
-      alignItems: 'flex-start',
-      alignSelf: 'flex-end',      
+      alignSelf: 'flex-end',  
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 6,
+      },
+      shadowOpacity: 0.37,
+      shadowRadius: 7.49,
+      
+      elevation: 12,
     },
     plusIconButton: {
+     
       backgroundColor: '#4d4f4e',
       borderWidth: 3,
       position: "absolute",
@@ -98,8 +109,8 @@ export default StyleSheet.create({
       borderColor: '#3f4140',
       alignItems: 'center',
       justifyContent: 'center',
-      width: responsiveSize(50),
-      height: responsiveSize(50),
+      width: responsiveSize(55),
+      height: responsiveSize(55),
     },
     plusIcon: {
       width: responsiveSize(20), 

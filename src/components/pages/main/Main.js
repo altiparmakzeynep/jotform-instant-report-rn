@@ -22,23 +22,22 @@ class Main extends Component {
     super(props);
     this.state = {
       selectedTeam: [],
-      allButton: false
+      allButton: true
     }   
-  }
+  } 
   searchTeams = (search) => {
-    console.log("clicked", search);
     this.setState({ allButton:false })
     return(
       this.props.submissions.map((item) => {
         item.answers[5].answer === search.item ? 
         this.setState(prevState => ({
-          selectedTeam: [...prevState.selectedTeam, item]
+          selectedTeam: [...prevState.selectedTeam, item] 
         }))
             : this.state.selectedTeam.splice(0,100)
       }
      )  
     )
-      
+
   } 
   teamCategoriesRenderItem = ({item}) => {
     return(
@@ -47,20 +46,6 @@ class Main extends Component {
         style = {styles.bottomTeamsButton}>
        <Text style = {styles.teamsNameText}>{item}</Text>
      </TouchableOpacity> 
-    )
-  }
-  renderContent = ({item}) => {
-    const teamTitle = item.answers[5].answer;
-    return(
-      <View style = {styles.submissionContainer}>
-      <Text onPress =  {() => this.searchTeams({teamTitle})} style = {styles.teamsHeaderText}>{item.answers[5].answer}</Text>
-      {item.answers[4].answer.length >= 140 ?  
-          <Text style = {styles.submissionsText}>{item.answers[4].answer.substring(0,140)}...
-              <Text style = {styles.contuniueText}>read more</Text>
-          </Text> 
-          : 
-          <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text> }
-  </View> 
     )
   }
     render(){  
@@ -84,18 +69,18 @@ class Main extends Component {
                 <View style = {styles.titleContainer}>
                     <Text style = {styles.titleText}>What is new?</Text>
                 </View>
-                {this.state.selectedTeam == 0 || this.state.allButton === true ? <SubmissionCard/> 
-                : 
-                <View style = {{height: PhoneHeight * 0.7}}>
-                  <FlatList data = {this.state.selectedTeam}
-                          renderItem = {this.renderContent}/>
-                </View>
-                }
+
+              {this.state.allButton === true ? <SubmissionCard data =  {this.props.submissions}/> : console.log("null")}
+
+              {this.state.selectedTeam == 0 ? <Text style = {styles.noSubmissionText}>no submission here</Text> : 
+                <SubmissionCard data = {this.state.selectedTeam}/>
+              }
            
               </View>
+              
               <View style = {styles.plusButtonContainer}>
                 <TouchableOpacity 
-                  onPress={() => this.props.navigation.navigate('Create Submission')}
+                  onPress={() => this.props.navigation.navigate('createSubmission')}
                   style = {styles.plusIconButton}>
                   <Image
                         style = {styles.plusIcon}
@@ -107,12 +92,10 @@ class Main extends Component {
     }
 }  
 const mapStateToProps = (state) => {
-  const { teamCategoriesValue, submissions, optionsArray } = state.mainReducer;
+  const { teamCategoriesValue, submissions } = state.mainReducer;
   return {
     teamCategoriesValue,
-    submissions,
-    optionsArray
-    
+    submissions
   }
 }
 export default connect(

@@ -23,10 +23,10 @@ class SubmissionCard extends Component{
     }
     render(){
         return(
-            <View style = {{height: PhoneHeight * 0.7}}>
+            <View style = {{height: PhoneHeight * 0.75}}>
                  <FlatList
                     showsVerticalScrollIndicator = {false}
-                    data = {this.props.submissions}
+                    data = {this.props.data}
                     renderItem = {this.submissionsRenderItem}
                     keyExtractor={item => item.id}/>
             </View>  

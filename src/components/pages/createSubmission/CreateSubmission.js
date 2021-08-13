@@ -48,7 +48,7 @@ class CreateSubmission extends Component{
 
    onSubmit = async () => {
     await this.props.sendSubmission(this.state.selectedTeam, this.state.longTextValue);
-    await this.props.navigation.navigate('Submissions');
+    await this.props.navigation.navigate('submissions');
     await this.props.fetchSubmissions();
   }
     render(){
@@ -56,7 +56,7 @@ class CreateSubmission extends Component{
             <SafeAreaView style = {styles.container}>
                 <View style = {styles.headerContainer}>
                     <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('Submissions')}
+                        onPress={() => this.props.navigation.navigate('submissions')}
                         style = {styles.arrowButtonContainer}>
                         <Image
                            style = {styles.arrowImg}

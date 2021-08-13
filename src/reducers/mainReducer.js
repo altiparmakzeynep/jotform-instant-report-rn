@@ -11,11 +11,12 @@ const INITIAL_STATE = {
     teamCategoriesValue: [],
     longTextValue: "",
     submissions: [],
-    submissionCount: 0
+    // colorArray: ['#98ddca', '#d5ecc2', '#ffd3b4', '#ffaaa7', '#b5cda3', '#f6ae99', '#dbc6eb', '#f4f75c', '#cff6cf', '#ecdfc8'],
+    deneme: {title: ""}
 }  
 const persistConfig = {
     key: 'root',
-    storage: AsyncStorage,
+    storage: AsyncStorage, 
     whitelist: [],
     blacklist: ['authButtonSpinner', 'authSpinnerStatus'] 
 };
@@ -24,6 +25,7 @@ const mainReducer = (state = INITIAL_STATE, action) => {
         case FETCH_TEAM_CATEGORIES:
             state.optionsArray = action.payload.data.content.options
             state.teamCategoriesValue = state.optionsArray.split("|")
+            // state.teamCategoriesValue.map((item) => state.deneme.title = [...state.deneme,item])
             return{
                 ...state,
             }
