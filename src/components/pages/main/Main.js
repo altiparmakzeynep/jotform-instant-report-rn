@@ -33,19 +33,23 @@ class Main extends Component {
         this.setState(prevState => ({
           selectedTeam: [...prevState.selectedTeam, item] 
         }))
-            : this.state.selectedTeam.splice(0,100)
+          : this.state.selectedTeam.splice(0,100)
       }
      )  
     )
-
   } 
+  submissionsRenderItem = ({item}) => {
+    return(
+        <SubmissionCard item = {item}/>
+    )
+  }
   teamCategoriesRenderItem = ({item}) => {
     return(
       <TouchableOpacity 
         onPress = {() => this.searchTeams({item})}
         style = {styles.bottomTeamsButton}>
        <Text style = {styles.teamsNameText}>{item}</Text>
-     </TouchableOpacity> 
+      </TouchableOpacity> 
     )
   }
     render(){  
@@ -63,28 +67,36 @@ class Main extends Component {
                     data = {this.props.teamCategoriesValue}
                     renderItem = {this.teamCategoriesRenderItem}
                     keyExtractor={item => item.id}/>
-
               </View>  
-              <View > 
+              <View> 
                 <View style = {styles.titleContainer}>
                     <Text style = {styles.titleText}>What is new?</Text>
-                </View>
+              </View>
 
-              {this.state.allButton === true ? <SubmissionCard data =  {this.props.submissions}/> : console.log("null")}
+              {this.state.allButton === true ?
+              <View style = {{height: PhoneHeight * 0.75}}>
+                  <FlatList
+                      showsVerticalScrollIndicator = {false}
+                      data = {this.props.submissions}
+                      renderItem = {this.submissionsRenderItem}
+                      keyExtractor={item => item.id}/>
+              </View>  : console.log("null")}
 
               {this.state.selectedTeam == 0 ? <Text style = {styles.noSubmissionText}>no submission here</Text> : 
-                <SubmissionCard data = {this.state.selectedTeam}/>
+                <FlatList
+                  showsVerticalScrollIndicator = {false}
+                  data = {this.state.selectedTeam}
+                  renderItem = {this.submissionsRenderItem}
+                  keyExtractor={item => item.id}/>
               }
-           
               </View>
-              
               <View style = {styles.plusButtonContainer}>
                 <TouchableOpacity 
                   onPress={() => this.props.navigation.navigate('createSubmission')}
                   style = {styles.plusIconButton}>
                   <Image
-                        style = {styles.plusIcon}
-                        source = {require('../../../images/plus.png')}/>
+                      style = {styles.plusIcon}
+                      source = {require('../../../images/plus.png')}/>
                 </TouchableOpacity>
               </View>
             </SafeAreaView>

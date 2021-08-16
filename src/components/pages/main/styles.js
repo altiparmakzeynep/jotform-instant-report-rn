@@ -61,7 +61,7 @@ export default StyleSheet.create({
       marginLeft: responsiveSize(15),
       marginRight: responsiveSize(15),
     },
-    contuniueText: {
+    continueText: {
       textDecorationLine: 'underline',  
       fontSize: responsiveSize(15),
       color: '#fff',
