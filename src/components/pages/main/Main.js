@@ -8,7 +8,7 @@ import {
   FlatList
  } from 'react-native';
 import styles from '../../pages/main/styles';
-import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
+import { fetchTeamCategories, fetchSubmissions, readSubmission } from '../../../actions/action';
 import { connect } from 'react-redux';
 import SubmissionCard from '../../cards/SubmissionCard';
 import { PhoneHeight } from '../../config/env';
@@ -26,21 +26,25 @@ class Main extends Component {
     }   
   } 
   searchTeams = (search) => {
+    console.log("clicked: ", search);
     this.setState({ allButton:false })
     return(
       this.props.submissions.map((item) => {
-        item.answers[5].answer === search.item ? 
+        item.answers[5].answer === search.item || item.answers[5].answer === search ? 
         this.setState(prevState => ({
           selectedTeam: [...prevState.selectedTeam, item] 
         }))
           : this.state.selectedTeam.splice(0,100)
-      }
+      } 
      )  
-    )
+    ) 
   } 
   submissionsRenderItem = ({item}) => {
     return(
-        <SubmissionCard item = {item}/>
+        <SubmissionCard item = {item} 
+                        action = {() => this.props.readSubmission(item.id) & this.props.navigation.navigate('readMore') } 
+                        filter = {() => this.searchTeams(item.answers[5].answer)}
+                        />
     )
   }
   teamCategoriesRenderItem = ({item}) => {
@@ -114,6 +118,7 @@ export default connect(
   mapStateToProps,
   {
     fetchTeamCategories,
-    fetchSubmissions
+    fetchSubmissions, 
+    readSubmission
   }
 )(Main)

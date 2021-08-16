@@ -1,7 +1,8 @@
 import {
     FETCH_TEAM_CATEGORIES,
     SEND_SUBMISSION,
-    FETCH_SUBMISSIONS
+    FETCH_SUBMISSIONS,
+    READ_SUBMISSION
 } from '../actions/action';
 import { persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
     longTextValue: "",
     submissions: [],
     // colorArray: ['#98ddca', '#d5ecc2', '#ffd3b4', '#ffaaa7', '#b5cda3', '#f6ae99', '#dbc6eb', '#f4f75c', '#cff6cf', '#ecdfc8'],
-    deneme: {title: ""}
+    selectedSubmission: []
 }  
 const persistConfig = {
     key: 'root',
@@ -27,7 +28,7 @@ const mainReducer = (state = INITIAL_STATE, action) => {
             state.teamCategoriesValue = state.optionsArray.split("|")
             // state.teamCategoriesValue.map((item) => state.deneme.title = [...state.deneme,item])
             return{
-                ...state,
+                ...state, 
             }
         case SEND_SUBMISSION:
             return{
@@ -38,8 +39,14 @@ const mainReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 submissions: action.payload.data.content
             }
-            default:
-                return state;
+        case READ_SUBMISSION:
+            console.log("reducardayım", action.payload.data.content);
+            return{
+                ...state,
+                selectedSubmission: action.payload.data.content
+            }
+        default:
+            return state;
     }
 }
 export default persistReducer(persistConfig, mainReducer);

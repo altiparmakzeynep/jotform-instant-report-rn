@@ -4,15 +4,16 @@ import { responsiveSize, PhoneWidth, PhoneHeight } from '../../../components/con
 export default StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#e5e5e5',
+      backgroundColor: '#fff',
       alignItems: 'center',
     },
     headerContainer: {
-        borderWidth: 2,
         marginTop: PhoneHeight * 0.03,
         width: PhoneWidth,
         height: PhoneHeight * 0.1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: '#eeeeee',
       },
       arrowButtonContainer: {
         borderWidth: 0, 
@@ -25,13 +26,26 @@ export default StyleSheet.create({
         width: responsiveSize(15), 
         height: responsiveSize(15), 
       },
-      textContainer: {
-        borderWidth: 1, 
+      titleContainer: {
         width: PhoneWidth,
-        height: PhoneHeight * 0.75,
+        height: PhoneHeight * 0.1,
+        justifyContent: 'center'
       },
-      textStyle: {
-        fontSize: responsiveSize(15),
-        margin: 10
-      }
+      titleText: {
+        fontSize: responsiveSize(22),
+        marginLeft: PhoneWidth * 0.05,
+        fontWeight: '500',
+        color: '#434343'
+      },
+      headerText: {
+        fontSize: responsiveSize(25),
+        marginTop: responsiveSize(15),
+        fontWeight: '700',
+        color: '#f79256'
+      },
+      submissionText: {
+        fontSize: responsiveSize(17),
+        color: '#434343',
+        margin: PhoneWidth * 0.05,
+      } 
 });
