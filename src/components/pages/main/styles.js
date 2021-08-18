@@ -11,26 +11,32 @@ export default StyleSheet.create({
       borderBottomWidth: 1,
       borderColor: '#eeeeee',
       justifyContent: 'center',
-      marginTop: PhoneHeight * 0.05,
+      marginTop: PhoneHeight * 0.02,
       width: PhoneWidth * 0.9, 
       height: PhoneHeight * 0.1,
       backgroundColor: '#fff', 
       flexDirection: 'row'
     },
     allButton: {
+      borderColor: '#434343',
+      borderWidth: 0,
       alignItems: 'center',
       justifyContent: 'center',
       width: PhoneWidth * 0.2,
       height: PhoneHeight * 0.075,
       borderBottomRightRadius: 3,
       borderTopRightRadius: 3,
-      backgroundColor: '#00b2ca',
+      backgroundColor: '#fff',
+    },
+    allText: {
+      color: '#0a1551',
+      fontWeight: '500',
+      fontSize: responsiveSize(24)
     },
     bottomTeamsButton: {
       borderRadius: 3,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#7dcfb6',
       marginLeft: 4,
       width: PhoneWidth * 0.4,
       height: PhoneHeight * 0.075
@@ -42,29 +48,50 @@ export default StyleSheet.create({
     },
     submissionContainer: {
       borderRadius: 5,
+      borderWidth: 0,
       marginVertical: responsiveSize(10),
-      backgroundColor: '#f79256',
+      backgroundColor: '#f4f4f4',
       width: PhoneWidth * 0.9,
-      height: PhoneHeight * 0.3,
+      height: PhoneHeight * 0.25,
       alignSelf: 'center',
     },
+    deneme: {
+      borderBottomLeftRadius: 5,
+      borderTopLeftRadius: 5,
+      borderWidth: 0,
+      backgroundColor: 'pink',
+      width: PhoneWidth * 0.03,
+      height: PhoneHeight * 0.25,
+    },
+    dateText: {
+      position: 'absolute', 
+      marginLeft: responsiveSize(15), 
+      marginTop: PhoneHeight * 0.08,
+      fontSize: responsiveSize(11),
+      color: '#0a1551'
+    },
     teamsHeaderText: {
-      fontSize: responsiveSize(22),
-      color: '#fff',
+      fontSize: responsiveSize(23),
+      color: '#0a1551',
       fontWeight: '600',
+      position: "absolute",
       margin: responsiveSize(15)
     },
     submissionsText: {
       fontSize: responsiveSize(15),
       color: '#000',
       fontWeight: '500',
+      position: "absolute",
+      // marginLeft: responsiveSize(15),
+      // marginRight: responsiveSize(15),
       marginLeft: responsiveSize(15),
-      marginRight: responsiveSize(15),
+      marginRight: responsiveSize(25),
+      marginTop: PhoneHeight * 0.11
     },
     continueText: {
       textDecorationLine: 'underline',  
       fontSize: responsiveSize(15),
-      color: '#fff',
+      color: '#0a1551',
       fontWeight: '500',
     },
     titleContainer: {
@@ -113,8 +140,26 @@ export default StyleSheet.create({
       height: responsiveSize(55),
     },
     plusIcon: {
-      width: responsiveSize(20), 
-      height: responsiveSize(20)
+      width: responsiveSize(10), 
+      height: responsiveSize(10)
+    },
+    readIconContainer: {
+      width: responsiveSize(30),
+      height: responsiveSize(30),
+      borderWidth: 0,
+      position: 'absolute',
+      alignSelf: 'flex-end',
+      marginTop: PhoneHeight * 0.2,
+      // alignItems: 'center',
+      // justifyContent: 'center'
+    },
+    readIconButton: {
+      borderWidth: 0, 
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: responsiveSize(30),
+      height: responsiveSize(30),
+      position: 'absolute'
     }
   });
   

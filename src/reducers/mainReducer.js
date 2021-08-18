@@ -2,48 +2,51 @@ import {
     FETCH_TEAM_CATEGORIES,
     SEND_SUBMISSION,
     FETCH_SUBMISSIONS,
-    READ_SUBMISSION
 } from '../actions/action';
 import { persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const INITIAL_STATE = {
     qid: "",
     optionsArray: [],
-    teamCategoriesValue: [],
+    tempArray: [],
     longTextValue: "",
-    submissions: [],
-    // colorArray: ['#98ddca', '#d5ecc2', '#ffd3b4', '#ffaaa7', '#b5cda3', '#f6ae99', '#dbc6eb', '#f4f75c', '#cff6cf', '#ecdfc8'],
-    selectedSubmission: []
+    // submissions: [],
+    // teamCategoriesValue:  ,
+    colorArray: ['#FF6100', '#FFB629', '#0099FF', '#B64DD8'],
+    currentColor: "",
+    selectedSubmission: [], 
+     
 }  
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage, 
     whitelist: [],
     blacklist: ['authButtonSpinner', 'authSpinnerStatus'] 
-};
+}; 
 const mainReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case FETCH_TEAM_CATEGORIES:
-            state.optionsArray = action.payload.data.content.options
-            state.teamCategoriesValue = state.optionsArray.split("|")
-            // state.teamCategoriesValue.map((item) => state.deneme.title = [...state.deneme,item])
+           const optionsArray = action.payload.data.content.options
+           const tempArray = optionsArray.split("|")
+           const teamCategoriesValue = tempArray.map((title, index) => {
+               return({
+                   title, color: state.colorArray[index % state.colorArray.length]
+               })
+            }) 
             return{
                 ...state, 
+                tempArray,
+                teamCategoriesValue
             }
         case SEND_SUBMISSION:
             return{
                 ...state,
             }
         case FETCH_SUBMISSIONS:
+            const submissions = action.payload.data.content;
             return{
                 ...state,
-                submissions: action.payload.data.content
-            }
-        case READ_SUBMISSION:
-            console.log("reducardayım", action.payload.data.content);
-            return{
-                ...state,
-                selectedSubmission: action.payload.data.content
+                submissions
             }
         default:
             return state;

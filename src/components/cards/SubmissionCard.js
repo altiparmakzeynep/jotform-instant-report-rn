@@ -1,19 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import styles from "../pages/main/styles";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { responsiveSize } from "../config/env";
 
-const SubmissionCard = ({item, action, filter}) => {
-
-    return(
+const SubmissionCard = ({item, action, filter, color}) => {
+    return( 
         <View style = {styles.submissionContainer}> 
-            <Text onPress = {filter} style = {styles.teamsHeaderText}>{item.answers[5].answer} Team</Text>
-            {item.answers[4].answer.length >= 140 ?  
-                <Text style = {styles.submissionsText}>{item.answers[4].answer.substring(0,140)}...
-                    <Text onPress={action} 
-                          style = {styles.continueText}>read more</Text>
-                </Text> 
-                : 
-                <Text style = {styles.submissionsText}>{item.answers[4].answer}</Text> }
+        <View style = {[styles.deneme, {backgroundColor:color}]}></View>
+        <Text style = {styles.dateText}>{item.created_at.substring(0,10)}</Text>
+            <Text onPress = {filter} style = {styles.teamsHeaderText}>{item?.answers?.[5]?.answer} Team</Text>
+            <Text numberOfLines = {4} style = {styles.submissionsText}>{item?.answers?.[4]?.answer}
+            </Text> 
+            <View style = {styles.readIconContainer}>
+            <TouchableOpacity onPress = {action}  style = {styles.readIconButton}>
+                <Image style = {{alignSelf: 'center', width: responsiveSize(10), height: responsiveSize(10)}} source = {require('../../images/readMore.png')} ></Image>
+            </TouchableOpacity>
+            </View>
         </View> 
     ) 
 }

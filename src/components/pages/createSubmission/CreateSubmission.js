@@ -87,7 +87,7 @@ class CreateSubmission extends Component{
                         onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
                             {this.props.teamCategoriesValue.map((item) => {
                               return(
-                                <Picker.Item label = {item} value = {item}></Picker.Item> 
+                                <Picker.Item label = {item.title} value = {item.title}></Picker.Item> 
                               )
                             })}
                         </Picker>
@@ -124,10 +124,11 @@ class CreateSubmission extends Component{
     }
 }
 const mapStateToProps = (state) => {
-  const { teamCategoriesValue, longTextValue } = state.mainReducer;
+  const { tempArray, longTextValue, teamCategoriesValue } = state.mainReducer;
   return {
-    teamCategoriesValue,
-    longTextValue
+    tempArray,
+    longTextValue,
+    teamCategoriesValue
   }
 
 }

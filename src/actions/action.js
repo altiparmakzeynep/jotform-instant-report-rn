@@ -4,7 +4,6 @@ import { API_BASE, FORM_ID, API_KEY } from '../components/config/env';
 export const FETCH_TEAM_CATEGORIES      = 'fetch_team_categories';
 export const SEND_SUBMISSION            = 'send_submission';
 export const FETCH_SUBMISSIONS          = 'fetch_submissions';
-export const READ_SUBMISSION            = 'read_submisson';
 
 export const fetchTeamCategories = (item) => {
     return dispatch => {
@@ -41,7 +40,7 @@ export const fetchSubmissions = () => {
             })
         }).catch((err) => {
             console.log(err.response)
-        })
+        }) 
     }
 }
 export const sendSubmission = ( selectedTeam, longTextValue) => {
@@ -63,26 +62,6 @@ export const sendSubmission = ( selectedTeam, longTextValue) => {
             })
         }).catch((err) => {
             console.log("ERR",err.response)
-        })
-    }
-}
-export const readSubmission = (subID) => {
-    console.log("sub id: ", subID);
-    return dispatch => {
-        axios({
-            url: `${API_BASE}/submission/${subID}?apiKey=${API_KEY}`,
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }).then((result) => {
-            dispatch({
-                type: READ_SUBMISSION,
-                payload: {data: result.data}
-            })
-        }).catch((err) => {
-            console.log(err.response)
         })
     }
 }
