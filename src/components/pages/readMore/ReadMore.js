@@ -20,13 +20,19 @@ class ReadMore extends Component{
                            source = {require('../../../images/arrow.png')}/>
                     </TouchableOpacity>
                     <Text style = {styles.headerText}>{submission.answers[5].answer} Team</Text>
+                    
                 </View>
-                <View style = {styles.titleContainer}>
+               <View style = {{backgroundColor: '#fff'}}>
+               <View style = {styles.titleContainer}>
                     <Text style = {styles.titleText}>Latest Update</Text>
+                    <Text style = {styles.dateText}>{submission.created_at.substring(0,10)}</Text>
+
                 </View>
+                
                 <ScrollView style = {styles.textContainer}>
                     <Text style = {styles.submissionText}>{submission.answers[4].answer}</Text>
                 </ScrollView>
+               </View>
             </SafeAreaView>
         )
     }

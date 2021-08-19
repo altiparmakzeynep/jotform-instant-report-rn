@@ -6,15 +6,15 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-    },
-    headerContainer: {
+      },
+      headerContainer: {
       borderBottomWidth: 1,
       borderColor: '#eeeeee',
-      justifyContent: 'center',
-      marginTop: PhoneHeight * 0.02,
-      width: PhoneWidth * 0.9, 
+      // justifyContent: 'center',
+      // marginTop: PhoneHeight * 0.02,
+      width: PhoneWidth, 
       height: PhoneHeight * 0.1,
-      backgroundColor: '#fff', 
+      backgroundColor: '#F6F6FF', 
       flexDirection: 'row'
     },
     allButton: {
@@ -26,11 +26,13 @@ export default StyleSheet.create({
       height: PhoneHeight * 0.075,
       borderBottomRightRadius: 3,
       borderTopRightRadius: 3,
-      backgroundColor: '#fff',
+      // backgroundColor: '#fff',
+      flexDirection: 'row'
     },
     allText: {
-      color: '#0a1551',
+      color: '#0A1551',
       fontWeight: '500',
+      marginTop: 20,
       fontSize: responsiveSize(24)
     },
     bottomTeamsButton: {
@@ -38,6 +40,7 @@ export default StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginLeft: 4,
+      marginTop: 8,
       width: PhoneWidth * 0.4,
       height: PhoneHeight * 0.075
     },
@@ -50,7 +53,7 @@ export default StyleSheet.create({
       borderRadius: 5,
       borderWidth: 0,
       marginVertical: responsiveSize(10),
-      backgroundColor: '#f4f4f4',
+      backgroundColor: '#F6F6FF',
       width: PhoneWidth * 0.9,
       height: PhoneHeight * 0.25,
       alignSelf: 'center',
@@ -65,21 +68,21 @@ export default StyleSheet.create({
     },
     dateText: {
       position: 'absolute', 
-      marginLeft: responsiveSize(15), 
-      marginTop: PhoneHeight * 0.08,
-      fontSize: responsiveSize(11),
-      color: '#0a1551'
+      marginLeft: responsiveSize(16), 
+      marginTop: PhoneHeight * 0.07,
+      fontSize: responsiveSize(12),
+      color: '#6F76A7'
     },
     teamsHeaderText: {
-      fontSize: responsiveSize(23),
+      fontSize: responsiveSize(18),
       color: '#0a1551',
-      fontWeight: '600',
+      fontWeight: 'bold',
       position: "absolute",
       margin: responsiveSize(15)
     },
     submissionsText: {
-      fontSize: responsiveSize(15),
-      color: '#000',
+      fontSize: responsiveSize(13),
+      color: '#6F76A7',
       fontWeight: '500',
       position: "absolute",
       // marginLeft: responsiveSize(15),
@@ -102,8 +105,8 @@ export default StyleSheet.create({
     titleText: {
       fontSize: responsiveSize(22),
       marginLeft: PhoneWidth * 0.05,
-      fontWeight: '400',
-      color: '#434343'
+      fontWeight: '700',
+      color: '#0a1551'
     },
     noSubmissionText: {
       alignSelf: 'center',
@@ -113,7 +116,7 @@ export default StyleSheet.create({
       width: PhoneWidth * 0.2,
       height: PhoneHeight * 0.1,
       justifyContent: 'center',
-      marginTop: PhoneHeight * 0.85,
+      marginTop: PhoneHeight * 0.88,
       position: 'absolute',
       alignSelf: 'flex-end',  
       shadowColor: "#000",
@@ -160,6 +163,14 @@ export default StyleSheet.create({
       width: responsiveSize(30),
       height: responsiveSize(30),
       position: 'absolute'
+    },
+    line: {
+      height: PhoneHeight * 0.075, 
+      borderWidth: 1, 
+      borderColor: '#6F76A7', 
+      borderRadius: 1,
+      marginTop: 20, 
+      marginLeft: 20
     }
   });
   

@@ -30,7 +30,7 @@ class CreateSubmission extends Component{
     super(props);
     this.state = {
       modalVisible: false,
-      selectedTeam: "Select", 
+      selectedTeam: "Please Select", 
       longTextValue: ""
     }   
   }
@@ -62,8 +62,13 @@ class CreateSubmission extends Component{
                            style = {styles.arrowImg}
                            source = {require('../../../images/arrow.png')}/>
                     </TouchableOpacity>
-                    <View style =  {styles.bottomHeader}>
-                      <Text style = {styles.bottomHeaderText}>Team</Text>
+                    <Text style = {styles.homeText}>Home</Text>
+
+                </View>
+                <HideKeyboard>
+                  <View style = {styles.inputContainer}>
+                  <Text style = {styles.pickerHeaderText}>Select team</Text>
+                  <View style =  {styles.bottomHeader}>
                       <TouchableOpacity 
                         onPress = {this.displayModal}
                         style = {styles.bottomDropdown}>
@@ -73,9 +78,6 @@ class CreateSubmission extends Component{
                         source = {require('../../../images/downArrow.png')}></Image>
                     </TouchableOpacity>
                     </View>
-                </View>
-                <HideKeyboard>
-                  <View style = {styles.inputContainer}>
                     <Modal animationType = "slide"
                            transparent = {true}
                            visible = {this.state.modalVisible}

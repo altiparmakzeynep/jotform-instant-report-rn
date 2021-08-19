@@ -4,7 +4,7 @@ import { responsiveSize, PhoneWidth, PhoneHeight } from '../../../components/con
 export default StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#F3F3FE',
       alignItems: 'center',
     },
     headerContainer: {
@@ -26,18 +26,21 @@ export default StyleSheet.create({
       height: responsiveSize(15), 
     },
     bottomHeader: {
-      borderWidth: 0,
+      borderWidth: 1,
       borderRadius: 3,
+      borderColor: '#d1d1d8',
+      alignSelf: 'flex-start',
       marginTop: PhoneHeight * 0.015,
-      backgroundColor: '#dadada',
-      width: PhoneWidth * 0.8,
+      backgroundColor: '#f4f4f4',
+      width: PhoneWidth * 0.9,
       height: PhoneHeight * 0.07,
       justifyContent: 'center',
+      marginLeft: PhoneWidth * 0.05
     },
     bottomHeaderText: {
       fontSize: responsiveSize(20),
       fontWeight: '500',
-      marginLeft: PhoneWidth * 0.05,
+      marginLeft: PhoneWidth * 0.01,
       color: '#646464'
     },
     bottomDropdown: {
@@ -48,20 +51,19 @@ export default StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       position: 'absolute',
-      backgroundColor: '#fff',
-      marginLeft: PhoneWidth * 0.25
+      marginLeft: PhoneWidth * 0.05,
     },
     dropdownText: {
-      fontSize: responsiveSize(20),
+      fontSize: responsiveSize(17),
       fontWeight: '300',
-      color: '#8d8d8d',
-      marginLeft: PhoneWidth * 0.03
+      color: '#55647E',
+      // marginLeft: PhoneWidth * 0
     },
     downArrowImg: {
-      width: responsiveSize(10),
-      height: responsiveSize(10),
+      width: responsiveSize(12),
+      height: responsiveSize(12),
       position: 'absolute',
-      marginLeft: PhoneWidth * 0.48
+      marginLeft: PhoneWidth * 0.75
     },
     inputContainer: {
       borderWidth: 0,
@@ -95,8 +97,8 @@ export default StyleSheet.create({
     titleText: {
       fontSize: responsiveSize(22),
       marginLeft: PhoneWidth * 0.05,
-      fontWeight: '400',
-      color: '#434343'
+      fontWeight: '500',
+      color: '#55647e'
     },
     textContainer: {
       borderWidth: 0,
@@ -106,24 +108,25 @@ export default StyleSheet.create({
     textInputContainer: {
       alignSelf: 'center',
       width: PhoneWidth * 0.9, 
-      height: PhoneHeight * 0.5, 
+      height: PhoneHeight * 0.4, 
       borderWidth: 1,
-      borderColor: '#dadada',
+      borderColor: '#d1d1d8',
       borderRadius: 3,
       padding: responsiveSize(10),
     },
     submitButtonContainer: {
       borderWidth: 0,
       width: PhoneWidth,
+      position: 'absolute',
       height: PhoneHeight * 0.1,
-      marginTop: PhoneHeight * 0.05,
+      marginTop: PhoneHeight * 0.68,
       alignItems: 'center',
       justifyContent: 'center',
     },
     submitButton: {
       borderRadius: 5,
       height: PhoneHeight * 0.075,
-      width: PhoneWidth * 0.4,
+      width: PhoneWidth * 0.9,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#01bd6f'
@@ -131,6 +134,19 @@ export default StyleSheet.create({
     submitText: {
       fontSize: responsiveSize(20), 
       color: 'white', 
-      fontWeight: '600'
+      fontWeight: '900'
+    },
+    homeText: {
+      color: '#0A1551',
+      fontWeight: '700',
+      marginTop: 19,
+      fontSize: responsiveSize(24)
+    },
+    pickerHeaderText: {
+      fontSize: responsiveSize(16),
+      fontWeight: '500',
+      alignSelf: 'flex-start', 
+      marginLeft: PhoneWidth * 0.05,
+      marginTop: PhoneHeight * 0.03
     }
 });

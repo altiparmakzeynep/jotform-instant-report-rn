@@ -63,13 +63,17 @@ class Main extends Component {
   } 
     render(){  
         return (
-            <SafeAreaView style = {styles.container}>
+            <View style = {styles.container}>
+              <View style = {{backgroundColor: '#F6F6FF', width:PhoneWidth, height: PhoneHeight * 0.1, alignItems: 'center'}}>
               <Text style = {{fontSize: responsiveSize(23), marginTop: PhoneHeight * 0.05,}}>{this.state.headerText}</Text>
+              </View>
               <View style = {styles.headerContainer}>
                 <TouchableOpacity 
                   onPress = {() => this.setState({allButton:true, selectedTeam:[], headerText: "All"})}
                   style = {styles.allButton}>
                   <Text style = {styles.allText}>All</Text>
+                  <View style = {styles.line}></View>
+
                 </TouchableOpacity>
                 <FlatList
                     horizontal
@@ -83,7 +87,7 @@ class Main extends Component {
                     <Text style = {styles.titleText}>What is new?</Text>
               </View>
                 <FlatList
-                  ListFooterComponent = {<View style = {{height:150}}/>}
+                  ListFooterComponent = {<View style = {{height:200}}/>}
                   showsVerticalScrollIndicator = {false}
                   data = {this.state.allButton === true ? this.props.submissions : this.state.selectedTeam}
                   renderItem = {this.submissionsRenderItem}
@@ -98,7 +102,7 @@ class Main extends Component {
                       source = {require('../../../images/plus.png')}/>
                 </TouchableOpacity>
               </View>
-            </SafeAreaView>
+            </View>
         );
     }
 }  
