@@ -55,8 +55,9 @@ export default StyleSheet.create({
     },
     dropdownText: {
       fontSize: responsiveSize(17),
-      fontWeight: '300',
+      fontWeight: '400',
       color: '#55647E',
+      fontFamily: 'circular-std-book'
       // marginLeft: PhoneWidth * 0
     },
     downArrowImg: {
@@ -98,7 +99,8 @@ export default StyleSheet.create({
       fontSize: responsiveSize(22),
       marginLeft: PhoneWidth * 0.05,
       fontWeight: '500',
-      color: '#55647e'
+      color: '#55647e',
+      fontFamily: 'circular-std-medium'
     },
     textContainer: {
       borderWidth: 0,
@@ -134,17 +136,20 @@ export default StyleSheet.create({
     submitText: {
       fontSize: responsiveSize(20), 
       color: 'white', 
-      fontWeight: '900'
+      fontWeight: '900',
+      fontFamily: 'circular-std-black'
     },
     homeText: {
       color: '#0A1551',
       fontWeight: '700',
       marginTop: 19,
-      fontSize: responsiveSize(24)
+      fontSize: responsiveSize(24),
+      fontFamily: 'circular-std-bold'
     },
     pickerHeaderText: {
       fontSize: responsiveSize(16),
       fontWeight: '500',
+      fontFamily: 'circular-std-medium',
       alignSelf: 'flex-start', 
       marginLeft: PhoneWidth * 0.05,
       marginTop: PhoneHeight * 0.03

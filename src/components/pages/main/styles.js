@@ -33,7 +33,8 @@ export default StyleSheet.create({
       color: '#0A1551',
       fontWeight: '500',
       marginTop: 20,
-      fontSize: responsiveSize(24)
+      fontSize: responsiveSize(24),
+      fontFamily: 'circular-std-medium'
     },
     bottomTeamsButton: {
       borderRadius: 3,
@@ -47,7 +48,8 @@ export default StyleSheet.create({
     teamsNameText: {
       color: '#fff',
       fontWeight: '500',
-      fontSize: responsiveSize(17)
+      fontSize: responsiveSize(17),
+      fontFamily: 'circular-std-medium'
     },
     submissionContainer: {
       borderRadius: 5,
@@ -71,22 +73,24 @@ export default StyleSheet.create({
       marginLeft: responsiveSize(16), 
       marginTop: PhoneHeight * 0.07,
       fontSize: responsiveSize(12),
-      color: '#6F76A7'
+      color: '#6F76A7',
+      fontWeight: '400',
+      fontFamily: 'circular-std-book'
     },
     teamsHeaderText: {
       fontSize: responsiveSize(18),
       color: '#0a1551',
-      fontWeight: 'bold',
+      fontFamily: 'circular-std-bold',
+      fontWeight: '700',
       position: "absolute",
       margin: responsiveSize(15)
     },
     submissionsText: {
       fontSize: responsiveSize(13),
       color: '#6F76A7',
-      fontWeight: '500',
+      fontFamily: 'circular-std-book',
+      fontWeight: '400',
       position: "absolute",
-      // marginLeft: responsiveSize(15),
-      // marginRight: responsiveSize(15),
       marginLeft: responsiveSize(15),
       marginRight: responsiveSize(25),
       marginTop: PhoneHeight * 0.11
@@ -106,7 +110,8 @@ export default StyleSheet.create({
       fontSize: responsiveSize(22),
       marginLeft: PhoneWidth * 0.05,
       fontWeight: '700',
-      color: '#0a1551'
+      color: '#0a1551',
+      fontFamily: 'circular-std-bold'
     },
     noSubmissionText: {
       alignSelf: 'center',
@@ -143,8 +148,8 @@ export default StyleSheet.create({
       height: responsiveSize(55),
     },
     plusIcon: {
-      width: responsiveSize(10), 
-      height: responsiveSize(10)
+      width: responsiveSize(15), 
+      height: responsiveSize(15)
     },
     readIconContainer: {
       width: responsiveSize(30),

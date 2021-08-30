@@ -15,6 +15,7 @@ import styles from "../createSubmission/styles";
 import { Picker } from '@react-native-picker/picker';
 import { fetchTeamCategories, sendSubmission, fetchSubmissions} from '../../../actions/action';
 import { connect } from 'react-redux';
+import * as Font from 'expo-font';
 
 const HideKeyboard = ({ children }) => (
   <TouchableWithoutFeedback
@@ -25,6 +26,7 @@ const HideKeyboard = ({ children }) => (
 class CreateSubmission extends Component{
   componentDidMount(){
     this.props.fetchTeamCategories();
+    this.fetchFonts();
   }
   constructor(props) {
     super(props);
@@ -34,6 +36,14 @@ class CreateSubmission extends Component{
       longTextValue: ""
     }   
   }
+  fetchFonts = () => {
+    return Font.loadAsync({
+    'circular-std-black': require('../../../../assets/fonts/CircularStd-Black.otf'),
+    'circular-std-bold': require('../../../../assets/fonts/CircularStd-Bold.otf'),
+    'circular-std-medium': require('../../../../assets/fonts/CircularStd-Medium.otf'),
+    'circular-std-book': require('../../../../assets/fonts/CircularStd-Book.otf'),
+    });
+  };
   displayModal = () => {
     this.setState({modalVisible: true
     })

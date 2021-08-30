@@ -12,12 +12,14 @@ import styles from '../../pages/main/styles';
 import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
 import { connect } from 'react-redux';
 import SubmissionCard from '../../cards/SubmissionCard';
-import { PhoneHeight, PhoneWidth, responsiveSize } from '../../config/env';
+import { PhoneHeight, PhoneWidth } from '../../config/env';
+import * as Font from 'expo-font';
 
 class Main extends Component {
   componentDidMount(){
     this.props.fetchTeamCategories();
     this.props.fetchSubmissions();
+    this.fetchFonts();
   }
   constructor(props) {
     super(props); 
@@ -25,9 +27,17 @@ class Main extends Component {
       selectedTeam: [],
       allButton: true,
       headerText: 'All',
-      color: ''
+      color: '',
     }   
   } 
+  fetchFonts = () => {
+    return Font.loadAsync({
+    'circular-std': require('../../../../assets/fonts/CircularStd-Black.otf'),
+    'circular-std-bold': require('../../../../assets/fonts/CircularStd-Bold.otf'),
+    'circular-std-medium': require('../../../../assets/fonts/CircularStd-Medium.otf'),
+    'circular-std-book': require('../../../../assets/fonts/CircularStd-Book.otf'),
+    });
+  };
   searchTeams = (search) => {
     this.setState({ allButton:false })
     return(
@@ -57,7 +67,7 @@ class Main extends Component {
       <TouchableOpacity 
         onPress = {() => this.searchTeams({item:item.title, color:item.color})}
         style = {[styles.bottomTeamsButton, {backgroundColor: item.color}]}>
-       <Text style = {styles.teamsNameText}>{item.title}</Text>
+       <Text style = {[styles.teamsNameText, {}]}>{item.title}</Text>
       </TouchableOpacity> 
     ) 
   } 
@@ -65,7 +75,7 @@ class Main extends Component {
         return (
             <View style = {styles.container}>
               <View style = {{backgroundColor: '#F6F6FF', width:PhoneWidth, height: PhoneHeight * 0.1, alignItems: 'center'}}>
-              <Text style = {{fontSize: responsiveSize(23), marginTop: PhoneHeight * 0.05,}}>{this.state.headerText}</Text>
+              {/* <Text style = {{fontSize: responsiveSize(23), marginTop: PhoneHeight * 0.05,}}>{this.state.headerText}</Text> */}
               </View>
               <View style = {styles.headerContainer}>
                 <TouchableOpacity 
