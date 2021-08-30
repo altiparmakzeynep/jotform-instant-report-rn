@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { 
-  SafeAreaView, 
   Text, 
   View,   
   Image, 
   TouchableOpacity, 
   FlatList,
-  ActivityIndicator
  } from 'react-native';
 import styles from '../../pages/main/styles';
 import { fetchTeamCategories, fetchSubmissions } from '../../../actions/action';
@@ -67,7 +65,7 @@ class Main extends Component {
       <TouchableOpacity 
         onPress = {() => this.searchTeams({item:item.title, color:item.color})}
         style = {[styles.bottomTeamsButton, {backgroundColor: item.color}]}>
-       <Text style = {[styles.teamsNameText, {}]}>{item.title}</Text>
+       <Text style = {styles.teamsNameText}>{item.title}</Text>
       </TouchableOpacity> 
     ) 
   } 
@@ -77,13 +75,13 @@ class Main extends Component {
               <View style = {{backgroundColor: '#F6F6FF', width:PhoneWidth, height: PhoneHeight * 0.1, alignItems: 'center'}}>
               {/* <Text style = {{fontSize: responsiveSize(23), marginTop: PhoneHeight * 0.05,}}>{this.state.headerText}</Text> */}
               </View>
+
               <View style = {styles.headerContainer}>
                 <TouchableOpacity 
                   onPress = {() => this.setState({allButton:true, selectedTeam:[], headerText: "All"})}
                   style = {styles.allButton}>
                   <Text style = {styles.allText}>All</Text>
                   <View style = {styles.line}></View>
-
                 </TouchableOpacity>
                 <FlatList
                     horizontal
@@ -92,17 +90,19 @@ class Main extends Component {
                     renderItem = {this.teamCategoriesRenderItem}
                     keyExtractor={item => item.id}/>
               </View>  
+
               <View> 
                 <View style = {styles.titleContainer}>
                     <Text style = {styles.titleText}>What is new?</Text>
               </View>
                 <FlatList
-                  ListFooterComponent = {<View style = {{height:200}}/>}
+                  ListFooterComponent = {<View style = {{ height: 200 }}/>}
                   showsVerticalScrollIndicator = {false}
                   data = {this.state.allButton === true ? this.props.submissions : this.state.selectedTeam}
                   renderItem = {this.submissionsRenderItem}
-                  keyExtractor={item => item.id}/>
+                  keyExtractor = {item => item.id}/>
               </View>
+
               <View style = {styles.plusButtonContainer}>
                 <TouchableOpacity 
                   onPress={() => this.props.navigation.navigate('createSubmission')}

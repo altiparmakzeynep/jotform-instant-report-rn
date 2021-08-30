@@ -19,10 +19,10 @@ import * as Font from 'expo-font';
 
 const HideKeyboard = ({ children }) => (
   <TouchableWithoutFeedback
-       onPress={() => Keyboard.dismiss()}>{children}
+    onPress={() => Keyboard.dismiss()}>{children}
   </TouchableWithoutFeedback>
 );
-  
+
 class CreateSubmission extends Component{
   componentDidMount(){
     this.props.fetchTeamCategories();
@@ -32,8 +32,8 @@ class CreateSubmission extends Component{
     super(props);
     this.state = {
       modalVisible: false,
-      selectedTeam: "Please Select", 
-      longTextValue: ""
+      selectedTeam: 'Please Select', 
+      longTextValue: ''
     }   
   }
   fetchFonts = () => {
@@ -56,52 +56,52 @@ class CreateSubmission extends Component{
   }
   onLongTextChanged = (value) => this.setState({longTextValue: value})
 
-   onSubmit = async () => {
-    await this.props.sendSubmission(this.state.selectedTeam, this.state.longTextValue);
-    await this.props.navigation.navigate('submissions');
-    await this.props.fetchSubmissions();
+  onSubmit = async () => {
+  await this.props.sendSubmission(this.state.selectedTeam, this.state.longTextValue);
+  await this.props.navigation.navigate('submissions');
+  await this.props.fetchSubmissions();
   }
     render(){
         return(
             <SafeAreaView style = {styles.container}>
                 <View style = {styles.headerContainer}>
-                    <TouchableOpacity 
-                        onPress={() => this.props.navigation.navigate('submissions')}
-                        style = {styles.arrowButtonContainer}>
-                        <Image
-                           style = {styles.arrowImg}
-                           source = {require('../../../images/arrow.png')}/>
-                    </TouchableOpacity>
-                    <Text style = {styles.homeText}>Home</Text>
-
+                  <TouchableOpacity 
+                      onPress={() => this.props.navigation.navigate('submissions')}
+                      style = {styles.arrowButtonContainer}>
+                      <Image
+                          style = {styles.arrowImg}
+                          source = {require('../../../images/arrow.png')}/>
+                  </TouchableOpacity>
+                  <Text style = {styles.homeText}>Home</Text>
                 </View>
+
                 <HideKeyboard>
                   <View style = {styles.inputContainer}>
-                  <Text style = {styles.pickerHeaderText}>Select team</Text>
-                  <View style =  {styles.bottomHeader}>
+                    <Text style = {styles.pickerHeaderText}>Select team</Text>
+                    <View style =  {styles.bottomHeader}>
                       <TouchableOpacity 
                         onPress = {this.displayModal}
                         style = {styles.bottomDropdown}>
-                     <Text style = {styles.dropdownText}>{this.state.selectedTeam}</Text>
-                     <Image 
-                        style = {styles.downArrowImg}
-                        source = {require('../../../images/downArrow.png')}></Image>
-                    </TouchableOpacity>
+                      <Text style = {styles.dropdownText}>{this.state.selectedTeam}</Text>
+                      <Image 
+                          style = {styles.downArrowImg}
+                          source = {require('../../../images/downArrow.png')}></Image>
+                      </TouchableOpacity>
                     </View>
-                    <Modal animationType = "slide"
+                    <Modal animationType = 'slide'
                            transparent = {true}
                            visible = {this.state.modalVisible}
                            onRequestClose = {() => {
                            this.setModalVisible(!modalVisible)}}>
                       <View style = {styles.modalContainer}>
                         <Picker 
-                        selectedValue = {this.state.selectedTeam}
-                        onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
-                            {this.props.teamCategoriesValue.map((item) => {
-                              return(
-                                <Picker.Item label = {item.title} value = {item.title}></Picker.Item> 
-                              )
-                            })}
+                          selectedValue = {this.state.selectedTeam}
+                          onValueChange = {( itemValue, itemIndex) => this.setSelectedTeam(itemValue)}>
+                              {this.props.teamCategoriesValue.map((item) => {
+                                return(
+                                  <Picker.Item label = {item.title} value = {item.title}></Picker.Item> 
+                                )
+                              })}
                         </Picker>
                         <View style = {styles.saveButtonContainer}>
                           <TouchableOpacity 
@@ -112,9 +112,11 @@ class CreateSubmission extends Component{
                         </View>
                       </View>
                     </Modal>
+
                     <View style = {styles.titleContainer}>
                       <Text style = {styles.titleText}>What is new?</Text>
                     </View>
+
                     <View style = {styles.textContainer}>
                         <TextInput 
                             placeholder = 'Type here...'
@@ -122,6 +124,7 @@ class CreateSubmission extends Component{
                             style = {styles.textInputContainer}
                             onChangeText={this.onLongTextChanged}/>
                     </View>
+
                     <View style = {styles.submitButtonContainer}>
                       <TouchableOpacity 
                         onPress = { this.onSubmit }
@@ -142,7 +145,6 @@ const mapStateToProps = (state) => {
     longTextValue,
     teamCategoriesValue
   }
-
 }
 export default connect(
   mapStateToProps,
