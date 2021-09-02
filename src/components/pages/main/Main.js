@@ -26,25 +26,26 @@ class Main extends Component {
       allButton: true,
       headerText: 'All',
       color: '',
+      selectedTeamCat: []
     }   
   } 
   fetchFonts = () => {
     return Font.loadAsync({
-    'circular-std': require('../../../../assets/fonts/CircularStd-Black.otf'),
+    'circular-std-black': require('../../../../assets/fonts/CircularStd-Black.otf'),
     'circular-std-bold': require('../../../../assets/fonts/CircularStd-Bold.otf'),
     'circular-std-medium': require('../../../../assets/fonts/CircularStd-Medium.otf'),
     'circular-std-book': require('../../../../assets/fonts/CircularStd-Book.otf'),
     });
   };
   searchTeams = (search) => {
-    this.setState({ allButton:false })
+    this.setState({ allButton: false, selectedTeamCat: [search]})
     return(
       this.props.submissions.map((item) => {
         item.answers[5].answer === search.item || item.answers[5].answer === search ? 
         this.setState(prevState => ({
           selectedTeam: [...prevState.selectedTeam, item],
           headerText: search.item,
-          color: search.color
+          color: search.color, 
         }))
           : this.state.selectedTeam.splice(0,100)
       }  
@@ -61,15 +62,18 @@ class Main extends Component {
     )
   }
   teamCategoriesRenderItem = ({item}) => {
+    console.log("itemmmm", item);
     return(
       <TouchableOpacity 
         onPress = {() => this.searchTeams({item:item.title, color:item.color})}
         style = {[styles.bottomTeamsButton, {backgroundColor: item.color}]}>
-       <Text style = {styles.teamsNameText}>{item.title}</Text>
+       <Text style = {styles.teamsNameText}>{item.title || item.item}</Text>
       </TouchableOpacity> 
     ) 
   } 
     render(){  
+      console.log("seçilen cat: ", this.state.selectedTeamCat);
+      console.log("tüm takımlar: ", this.props.teamCategoriesValue);
         return (
             <View style = {styles.container}>
               <View style = {{backgroundColor: '#F6F6FF', width:PhoneWidth, height: PhoneHeight * 0.1, alignItems: 'center'}}>
@@ -86,7 +90,7 @@ class Main extends Component {
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator = {false}
-                    data = {this.props.teamCategoriesValue}
+                    data = {this.state.allButton === true ? this.props.teamCategoriesValue : this.state.selectedTeamCat}
                     renderItem = {this.teamCategoriesRenderItem}
                     keyExtractor={item => item.id}/>
               </View>  

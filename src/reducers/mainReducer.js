@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     optionsArray: [],
     tempArray: [],
     longTextValue: "",
+    teamCategoriesValue: [],
     colorArray: ['#FF6100', '#FFB629', '#0099FF', '#B64DD8'],
     currentColor: "",
     selectedSubmission: [], 

@@ -11,7 +11,7 @@ class RouterComp extends Component {
         const Stack  = createStackNavigator();
         return(
             <NavigationContainer>
-                <Stack.Navigator name = 'authStack' initialRouteName = 'createSubmission' >
+                <Stack.Navigator name = 'authStack' initialRouteName = 'submissions' >
                     <Stack.Screen name = 'submissions' options = {{headerShown: false}} component = {Main}></Stack.Screen>
                     <Stack.Screen name = 'createSubmission' options = {{headerShown: false}} component = {CreateSubmission}></Stack.Screen>
                     <Stack.Screen name = 'readMore' options = {{headerShown: false}} component = {ReadMore}></Stack.Screen>
